@@ -1,0 +1,55 @@
+/* 
+    Document   : style
+    Created on : 07-Jan-2011, 15:59:41
+    Author     : jake
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+
+body {
+	background: black;
+	padding: 0;
+	margin: 0;
+}
+
+ul {
+	text-align: center;
+	padding: 0;
+	margin: 10px;
+	list-style-type: none;
+}
+
+.build {
+	
+	float: left;
+	margin: 3px;
+	width: 10%;
+	height: 60px;
+	
+	
+	-webkit-border-radius: 10px;
+}
+
+.successful {
+	background: lime;	
+}
+
+.failed {
+	width: 30%;
+	background: red;
+	
+}
+
+.cancelled {
+	width: 15%;
+	background: silver;	
+}
