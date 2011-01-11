@@ -9,7 +9,16 @@
 	<body>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"></script>
 		<script>
+		function updateBuilds(){
+			$.get('getBuilds.php', function(data){
+				$('#builds').html(data);
+				setTimeout('updateBuilds()', 4000);   
+			});
+		}
+		
 		$(document).ready(function(){
+			updateBuilds();
+			
 			var count = 0;
 			setInterval(function() {
 				count++;
@@ -22,18 +31,10 @@
 				1000
 			);
 		});
+		
 		</script>
-		<ul>
-<?php	
-			require_once ('lib/MockCI.php');
-			require_once ('lib/HudsonCI.php');
-			$ci = new MockCI('http://' . gethostname() . ':8080');
-			$ci = new HudsonCI('http://' . gethostname() . ':8080');
-			$jobs = $ci->getAllJobs();
-			foreach ($jobs as $job) {
-				echo "\t\t\t<li class = 'build " . implode(" ",$job['status'] ) . "'>{$job['name']}</li>\n";
-			}
-?>
+		<ul id="builds">
+
 		</ul>
 	</body>
 </html>
