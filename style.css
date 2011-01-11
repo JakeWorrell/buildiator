@@ -16,6 +16,7 @@ root {
 }
 
 body {
+	font-family: arial, sans;
 	background: black;
 	padding: 0;
 	margin: 0;
@@ -23,18 +24,18 @@ body {
 
 ul {
 	text-align: center;
-	padding: 0;
 	margin: 10px;
 	list-style-type: none;
 }
 
 .build {
-	
+	font-size: 1.5em;
+	overflow: hidden;
 	float: left;
 	margin: 3px;
 	width: 10%;
 	height: 60px;
-	
+	padding: 10px;
 	
 	-webkit-border-radius: 10px;
 }
