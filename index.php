@@ -9,9 +9,13 @@
 	<body>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"></script>
 		<script>
+		var lastdata;
 		function updateBuilds(){
 			$.get('getBuilds.php', function(data){
-				$('#builds').html(data);
+				if (data != lastdata){
+					lastdata = data;
+					$('#builds').html(data);
+				}
 				setTimeout('updateBuilds()', 4000);   
 			});
 		}
