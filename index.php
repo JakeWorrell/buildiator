@@ -4,24 +4,24 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="main StyleSheet" charset="utf-8" /> 
 		
-		<title>Buildiator</title>
+		<title>buildiator</title>
 	</head>
 	<body>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"></script>
 		<script>
 		var lastdata;
-		function updateBuilds(){
+		function updateJobs(){
 			$.get('getBuilds.php', function(data){
 				if (data != lastdata){
 					lastdata = data;
-					$('#builds').html(data);
+					$('#jobs').html(data);
 				}
-				setTimeout('updateBuilds()', 4000);   
+				setTimeout('updateJobs()', 4000);   
 			});
 		}
 		
 		$(document).ready(function(){
-			updateBuilds();
+			updateJobs();
 			
 			var count = 0;
 			setInterval(function() {
@@ -37,8 +37,8 @@
 		});
 		
 		</script>
-		<ul id="builds">
-
+		<ul id="jobs">
+			<!--this is where the jobs go-->
 		</ul>
 	</body>
 </html>

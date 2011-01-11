@@ -5,6 +5,6 @@ $ci = new MockCI('http://' . gethostname() . ':8080');
 $ci = new HudsonCI('http://' . gethostname() . ':8080');
 $jobs = $ci->getAllJobs();
 foreach ($jobs as $job) {
-	echo "<li class = 'build " . implode(" ",$job['status'] ) . "'>{$job['name']}</li>";
+	echo "<li class = 'job " . implode(" ",$job['status'] ) . "'>{$job['name']}</li>";
 }
 ?>

@@ -6,11 +6,6 @@
         Purpose of the stylesheet follows.
 */
 
-/* 
-   TODO customize this sample style
-   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
-*/
-
 root { 
     display: block;
 }
@@ -28,7 +23,7 @@ ul {
 	list-style-type: none;
 }
 
-.build {
+.job {
 	font-size: 1.5em;
 	overflow: hidden;
 	float: left;
@@ -36,7 +31,6 @@ ul {
 	width: 10%;
 	height: 60px;
 	padding: 10px;
-	
 	-webkit-border-radius: 10px;
 }
 
@@ -47,7 +41,6 @@ ul {
 .failed {
 	width: 30%;
 	background: red;
-	
 }
 
 .cancelled {
