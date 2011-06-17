@@ -19,12 +19,27 @@ class HudsonCI implements ContinuousIntegrationServerInterface{
 		$jobs = json_decode($json);
 		foreach ($jobs->jobs as $job) {
 			$newjob = array('name'=>$job->name, 'status'=>$this->translateColorToStatus($job->color));
+			if ($newjob['status'][0] == 'failed') {
+				$newjob['blame'] = $this->getBlameFor($job->name);
+			}
 			$return[] = $newjob;
 		}
 		return ($return);
 	}
+
+	private function getBlameFor($jobName) {
+		$job = rawurlencode($jobName);
+		$json = file_get_contents($this->url . "/job/{$job}/lastBuild/api/json?tree=culprits[fullName]");
+		$culprits = json_decode($json);
+		
+		if (empty($culprits->culprits)) {
+			return "Unknown";
+		}
+		return $culprits->culprits[0]->fullName;
+		
+	}
 	
-	private function translateColorToStatus($color){
+	private function translateColorToStatus($color) {
 		switch($color){
 			case 'blue':
 				return array('successful');
@@ -32,6 +47,8 @@ class HudsonCI implements ContinuousIntegrationServerInterface{
 				return array('successful','building');
 			case 'red':
 				return array('failed');
+			case 'red_anime':
+				return array('failed','building');
 			default:
 				return array('unknown');
 		}

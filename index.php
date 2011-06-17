@@ -16,7 +16,7 @@
 					lastdata = data;
 					$('#jobs').html(data);
 				}
-				setTimeout('updateJobs()', 4000);   
+				setTimeout('updateJobs()', 5000);   
 			});
 		}
 		
