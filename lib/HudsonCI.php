@@ -49,6 +49,10 @@ class HudsonCI implements ContinuousIntegrationServerInterface{
 				return array('failed');
 			case 'red_anime':
 				return array('failed','building');
+			case 'aborted':
+				return array('cancelled');
+			case 'aborted_anime':
+				return array('cancelled','building');
 			default:
 				return array('unknown');
 		}

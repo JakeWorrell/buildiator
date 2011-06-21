@@ -27,8 +27,9 @@
 			setInterval(function() {
 				count++;
 				var time = new Date().getTime();
+					op = (count%2).toFixed(2)
 					$('.building').animate({
-						opacity: (count%2).toFixed(2),
+						opacity: op,
 						easing: 'swing'
 					},1000)
 				},
