@@ -27,7 +27,10 @@
 			setInterval(function() {
 				count++;
 				var time = new Date().getTime();
-					op = (count%2).toFixed(2)
+					op = (count%2 +0.5).toFixed(2);
+					if (op>1) {
+						op = 1;
+					}
 					$('.building').animate({
 						opacity: op,
 						easing: 'swing'
