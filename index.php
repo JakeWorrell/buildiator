@@ -16,7 +16,12 @@
 					lastdata = data;
 					$('#jobs').html(data);
 				}
-				setTimeout('updateJobs()', 5000);   
+				setTimeout('updateJobs()', 5000);
+			});
+
+			$(document).ajaxError(function() {
+				//if there was an error updating, wait a bit longer and try again
+				setTimeout('updateJobs()', 10000);
 			});
 		}
 		
