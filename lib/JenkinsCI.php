@@ -1,13 +1,13 @@
 <?php
 /**
- * Description of HudsonCI
+ * Handles communication with a JenkinsCI server
  *
- * @author jake
+ * @author Jake Worrell (jakeworrell.co.uk)
  */
 
 require_once 'base/ContinuousIntegrationServerInterface.php';
 
-class HudsonCI implements ContinuousIntegrationServerInterface{
+class JenkinsCI implements ContinuousIntegrationServerInterface{
 	private $url;
 	
 	function __construct($url) {

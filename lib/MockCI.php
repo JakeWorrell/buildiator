@@ -3,9 +3,9 @@
 require_once 'base/ContinuousIntegrationServerInterface.php';
 
 /**
- * Description of MockCI
+ * A Mock CI for testing the visual stuff without a CI Server
  *
- * @author jake
+ * @author Jake Worrell (jakeworrell.co.uk)
  */
 class MockCI {
 	public function getAllJobs() {
