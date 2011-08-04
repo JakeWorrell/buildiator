@@ -1,7 +1,7 @@
 Set Up Instructions
 ===================
 
-You Will Need:
+You Will Need
  * A web server running PHP 5.3 (others may work, but not tested)
  * A Jenkins CI Server (unless you want to add support for a different one)
  * A web browser (Chrome or Firefox recommended - others not tested)
