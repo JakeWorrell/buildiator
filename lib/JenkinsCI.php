@@ -11,7 +11,11 @@ require_once 'lib/Exceptions.php';
 class JenkinsCI implements ContinuousIntegrationServerInterface{
 	private $url;
 	
-	function __construct($url) {
+	function __construct($url = null) {
+		if ($url==null) {
+			$url = 'http://' . gethostname() . ':8080';	
+		}
+
 		$this->url = $url;
 	}
 	

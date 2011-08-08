@@ -4,7 +4,7 @@ require_once ('lib/JenkinsCI.php');
 require_once ('lib/Exceptions.php');
 
 $result = '';
-$ci = new JenkinsCI('http://' . gethostname() . ':8080');
+$ci = new JenkinsCI();
 
 try {
 	$jobs = $ci->getAllJobs();
