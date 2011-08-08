@@ -55,6 +55,8 @@ class JenkinsCI implements ContinuousIntegrationServerInterface{
 				return array('successful','building');
 			case 'red':
 				return array('failed');
+			case 'yellow':
+				return array('unstable');
 			case 'red_anime':
 				return array('failed','building');
 			case 'aborted':

@@ -72,6 +72,14 @@ ul {
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ed1c24', endColorstr='#aa1317');
 }
 
+.unstable {
+	border: solid 1px #980c10;
+	background: #f19607;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f3c639), to(#f19607));
+	background: -moz-linear-gradient(top,  #f3c639,  #f19607);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f3c639', endColorstr='#f19607');
+}
+
 .cancelled {
 	border: solid 1px #555;
 	background: #6e6e6e;
