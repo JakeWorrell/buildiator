@@ -11,10 +11,10 @@
 		<script>
 		var lastdata;
 		function updateJobs(){
-			$.get('getBuilds.php', function(data){
-				if (data != lastdata){
-					lastdata = data;
-					$('#jobs').html(data);
+			$.getJSON('getBuilds.php', function(data){
+				if (data.content != lastdata){
+					lastdata = data.content;
+					$('#jobs').html(data.content);
 				}
 				setTimeout('updateJobs()', 5000);
 			});

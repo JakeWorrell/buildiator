@@ -1,14 +1,31 @@
 <?php	
 require_once ('lib/MockCI.php');
 require_once ('lib/JenkinsCI.php');
-$ci = new JenkinsCI('http://' . gethostname() . ':8080');
-$jobs = $ci->getAllJobs();
+require_once ('lib/Exceptions.php');
 
-foreach ($jobs as $job) {
-	$blame = null;
-	if ($job['status'][0] == 'failed') {
-		$blame = "<br /><span class='blame'>{$job['blame']}</span>" ;
-	}
-	echo "<li class = 'job " . implode(" ",$job['status'] ) . "'>{$job['name']}{$blame}</li>";
+$result = '';
+$ci = new JenkinsCI('http://' . gethostname() . ':8080');
+
+try {
+	$jobs = $ci->getAllJobs();
+} catch (BuildiatorCIServerCommunicationException $e) {
+	$result = array('status'  => 'error',
+					'content' => $e->getMessage());
 }
+
+if (!is_array($result)) {
+	$html = '';
+	foreach ($jobs as $job) {
+		$blame = null;	
+		if ($job['status'][0] == 'failed') {
+			$blame = "<br /><span class='blame'>{$job['blame']}</span>" ;
+		}
+		$html .="<li class = 'job " . implode(" ",$job['status'] ) . "'>{$job['name']}{$blame}</li>";
+	}
+
+	$result = array('status'  => 'ok',
+					'content' => $html);
+}
+
+echo json_encode($result);
 ?>

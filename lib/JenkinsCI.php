@@ -6,6 +6,7 @@
  */
 
 require_once 'base/ContinuousIntegrationServerInterface.php';
+require_once 'lib/Exceptions.php';
 
 class JenkinsCI implements ContinuousIntegrationServerInterface{
 	private $url;
@@ -15,7 +16,10 @@ class JenkinsCI implements ContinuousIntegrationServerInterface{
 	}
 	
 	public function getAllJobs() {
-		$json = file_get_contents($this->url . '/api/json?tree=jobs[name,color]');
+		$json = @file_get_contents($this->url . '/api/json?tree=jobs[name,color]');
+		if (!$json) {
+			throw new BuildiatorCIServerCommunicationException ("Error getting build data from Jenkins server at {$this->url}");
+		}
 		$jobs = json_decode($json);
 		foreach ($jobs->jobs as $job) {
 			$newjob = array('name'=>$job->name, 'status'=>$this->translateColorToStatus($job->color));
