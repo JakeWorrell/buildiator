@@ -10,15 +10,15 @@ require_once 'lib/Exceptions.php';
 
 class JenkinsCI implements ContinuousIntegrationServerInterface{
 	private $url;
-	
+
 	function __construct($url = null) {
 		if ($url==null) {
-			$url = 'http://' . gethostname() . ':8080';	
+			$url = 'http://' . gethostname() . ':8080';
 		}
 
 		$this->url = $url;
 	}
-	
+
 	public function getAllJobs() {
 		$json = @file_get_contents($this->url . '/api/json?tree=jobs[name,color]');
 		if (!$json) {
@@ -39,14 +39,14 @@ class JenkinsCI implements ContinuousIntegrationServerInterface{
 		$job = rawurlencode($jobName);
 		$json = file_get_contents($this->url . "/job/{$job}/lastBuild/api/json?tree=culprits[fullName]");
 		$culprits = json_decode($json);
-		
+
 		if (empty($culprits->culprits)) {
 			return "Unknown";
 		}
 		return $culprits->culprits[0]->fullName;
-		
+
 	}
-	
+
 	private function translateColorToStatus($color) {
 		switch($color){
 			case 'blue':
@@ -55,10 +55,12 @@ class JenkinsCI implements ContinuousIntegrationServerInterface{
 				return array('successful','building');
 			case 'red':
 				return array('failed');
-			case 'yellow':
-				return array('unstable');
 			case 'red_anime':
 				return array('failed','building');
+			case 'yellow':
+				return array('unstable');
+			case 'yellow_anime':
+				return array('unstable', 'building');
 			case 'aborted':
 				return array('cancelled');
 			case 'aborted_anime':
