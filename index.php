@@ -2,8 +2,8 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="main StyleSheet" charset="utf-8" /> 
-		
+		<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="main StyleSheet" charset="utf-8" />
+
 		<title>buildiator</title>
 	</head>
 	<body>
@@ -11,7 +11,7 @@
 		<script>
 		var lastdata;
 		function updateJobs(){
-			$.getJSON('getBuilds.php', function(data){
+			$.getJSON('getBuilds.php?view=<?= $_GET['view'] ?>', function(data){
 				if (data.content != lastdata){
 					lastdata = data.content;
 					$('#jobs').html(data.content);
@@ -19,17 +19,17 @@
 				setTimeout('updateJobs()', 5000);
 			});
 
-			
+
 		}
-		
+
 		$(document).ajaxError(function() {
 			//if there was an error updating, wait a bit longer and try again
 			setTimeout('updateJobs()', 10000);
 		});
-		
+
 		$(document).ready(function(){
 			updateJobs();
-			
+
 			var count = 0;
 			setInterval(function() {
 				count++;
@@ -46,7 +46,7 @@
 				1000
 			);
 		});
-		
+
 		</script>
 		<ul id="jobs">
 			<!--this is where the jobs go-->
