@@ -11,16 +11,20 @@ require_once 'lib/Exceptions.php';
 class JenkinsCI implements ContinuousIntegrationServerInterface{
 	private $url;
 
-	function __construct($url = null) {
+	function __construct($url = null, $view = null) {
 		if ($url==null) {
 			$url = 'http://' . gethostname() . ':8080';
 		}
-
 		$this->url = $url;
+		if ($view!=null) {
+			$this->view = '/view/' . $view;
+		} else {
+			$this->view = '';
+		}
 	}
 
 	public function getAllJobs() {
-		$json = @file_get_contents($this->url . '/api/json?tree=jobs[name,color]');
+		$json = @file_get_contents($this->url . $this->view .'/api/json?tree=jobs[name,color]');
 		if (!$json) {
 			throw new BuildiatorCIServerCommunicationException ("Error getting build data from Jenkins server at {$this->url}");
 		}

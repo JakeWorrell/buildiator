@@ -1,10 +1,14 @@
-<?php	
+<?php
 require_once ('lib/MockCI.php');
 require_once ('lib/JenkinsCI.php');
 require_once ('lib/Exceptions.php');
 
 $result = '';
-$ci = new JenkinsCI();
+if (isset($_GET['view'])) {
+	$ci = new JenkinsCI($_GET['view']);
+} else {
+	$ci = new JenkinsCI();
+}
 
 try {
 	$jobs = $ci->getAllJobs();
@@ -16,7 +20,7 @@ try {
 if (!is_array($result)) {
 	$html = '';
 	foreach ($jobs as $job) {
-		$blame = null;	
+		$blame = null;
 		if ($job['status'][0] == 'failed') {
 			$blame = "<br /><span class='blame'>{$job['blame']}</span>" ;
 		}
