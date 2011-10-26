@@ -11,7 +11,7 @@
 		<script>
 		var lastdata;
 		function updateJobs(){
-			$.getJSON('getBuilds.php?view=<?= $_GET['view'] ?>', function(data){
+			$.getJSON('getBuilds.php?view=<?php echo $_GET['view']; ?>', function(data){
 				if (data.content != lastdata){
 					lastdata = data.content;
 					$('#jobs').html(data.content);
