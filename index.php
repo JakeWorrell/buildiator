@@ -3,6 +3,12 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="main StyleSheet" charset="utf-8" />
+		<?php
+			$view = $_GET['view'];
+			if (isset($view) && !empty($view)) {
+				echo '	<link rel="stylesheet" href="' . "$view.css" . '" type="text/css" media="screen" title="view StyleSheet" charset="utf-8" />';
+			}
+		?>
 
 		<title>buildiator</title>
 	</head>
