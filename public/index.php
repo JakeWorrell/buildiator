@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="main StyleSheet" charset="utf-8" />
+		<link rel="stylesheet" href="themes/default/style.css" type="text/css" media="screen" title="main StyleSheet" charset="utf-8" />
 		<?php
 			$view = $_GET['view'];
 			if (isset($view) && !empty($view)) {

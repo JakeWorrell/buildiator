@@ -1,13 +1,13 @@
 <?php
-require_once ('lib/MockCI.php');
-require_once ('lib/JenkinsCI.php');
-require_once ('lib/Exceptions.php');
+require_once (__DIR__ .'/../lib/MockCI.php');
+require_once (__DIR__ .'/../lib/JenkinsCI.php');
+require_once (__DIR__ .'/../lib/Exceptions.php');
 
 $result = '';
 if (isset($_GET['view'])) {
-	$ci = new JenkinsCI($_GET['view']);
+	$ci = new JenkinsCI('http://ci.jenkins-ci.org/',$_GET['view']);
 } else {
-	$ci = new JenkinsCI();
+	$ci = new JenkinsCI('http://ci.jenkins-ci.org/');
 }
 
 try {

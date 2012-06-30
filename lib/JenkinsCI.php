@@ -5,8 +5,8 @@
  * @author Jake Worrell (jakeworrell.co.uk)
  */
 
-require_once 'base/ContinuousIntegrationServerInterface.php';
-require_once 'lib/Exceptions.php';
+require_once __DIR__ .'/base/ContinuousIntegrationServerInterface.php';
+require_once __DIR__ .'/Exceptions.php';
 
 class JenkinsCI implements ContinuousIntegrationServerInterface{
 	private $url;
